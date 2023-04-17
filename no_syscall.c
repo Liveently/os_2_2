@@ -9,9 +9,9 @@
 ssize_t my_write(int fileDescriptor, const void* buffer, size_t countOfBytes) {
     
     register int rdi          asm("rdi") = STDOUT;
-    register char *rsi        asm("rsi") = "Hello, world!\n";
+    register char *rsi        asm("rsi") = buffer;
     register int rax          asm("rax") = SYS_write;
-    register int rdx          asm("rdx") = STRING_SIZE;
+    register int rdx          asm("rdx") = countOfBytes;
 
     asm("syscall");                                                        
     
